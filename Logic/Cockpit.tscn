@@ -1,0 +1,138 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwgygoqlgixo1"]
+
+[ext_resource type="Script" path="res://Logic/Cockpit.gd" id="1_7uevs"]
+[ext_resource type="Script" path="res://PlayerCameraPath.gd" id="2_83mtf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8cpak"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5shrg"]
+radial_segments = 16
+
+[sub_resource type="Environment" id="Environment_m10ps"]
+background_mode = 1
+background_color = Color(0.398438, 0.34552, 0.34552, 1)
+tonemap_mode = 3
+ssao_enabled = true
+glow_enabled = true
+
+[node name="Cockpit" type="Node3D"]
+script = ExtResource("1_7uevs")
+
+[node name="Prototype" type="Node3D" parent="."]
+transform = Transform3D(0.498589, 0, 0, 0, 0.498589, 0, 0, 0, 0.498589, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(3.5175, 0, 0, 0, 0.0802565, 0, 0, 0, 1.16607, -0.555538, 0, -2.05512)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(0.920938, 0, 0.824539, 0.920938, -1.08335e-08, -0.824539, 4.02555e-08, 0.247841, -3.60417e-08, -1.50125, 4.72203, -2.63439)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(7.83972e-23, 7.66042e-09, 1.40326, 2.01932, -7.66042e-09, -2.25661e-23, 6.24144e-08, 0.247841, -4.33728e-08, 0.303045, 4.98358, -2.66052)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(2.20375e-23, 7.66042e-09, 1.28229, 0.567633, -7.66042e-09, -2.06208e-23, 1.75448e-08, 0.247841, -3.96338e-08, 1.91371, 5.51477, -2.57011)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(4.07665e-23, 7.66042e-09, 1.28229, 1.05005, -7.66042e-09, -2.06208e-23, 3.24555e-08, 0.247841, -3.96338e-08, 0.458539, -2.08451, -2.6442)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(4.52385e-24, 7.66042e-09, 0.0987839, 0.116523, -7.66042e-09, -1.58857e-24, 3.60158e-09, 0.247841, -3.05327e-09, 0.869174, -1.82467, -2.50218)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(1.79665e-23, 3.7375e-09, 0.0987839, 0.462774, -3.7375e-09, -1.58857e-24, 1.43037e-08, 0.120921, -3.05327e-09, 0.869174, -2.00426, -2.37064)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(2.20375e-23, 7.66042e-09, 0.656776, 0.567633, -7.66042e-09, -1.05618e-23, 1.75448e-08, 0.247841, -2.03e-08, 1.91371, 4.67054, -2.57011)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(3.5175, 0, 0, 0, 0.0802565, 0, 0, 0, 1.0017, 0.665996, -3.66105, -2.54469)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(-1.66881e-07, 0.0802565, 0, -3.81778, -3.50812e-09, 0, 0, 0, 1.34832, 2.44705, -1.91321, -2.16051)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(3.5175, 0, 0, 0, 0.0645813, 0.203119, 0, -0.0476483, 0.275303, 0.665996, -3.57018, -1.92618)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(0.418127, 0, 0, 0, 0.0802565, 0, 0, 0, 1.16607, 2.53867, 0, -2.05512)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(-1.82769e-08, 0, 1.16607, 0, 0.0802565, 0, -0.418127, 0, -5.09707e-08, 1.75236, 0, -1.68171)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(1.73633, 0.026774, -0.129512, 0, -0.025485, -1.1122, -0.648254, 0.0717134, -0.346893, -0.429122, 1.5623, -2.11689)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(0.561771, 0.0543427, -0.290362, 0.0385075, -0.0251758, -1.49306, -0.546801, 0.0540574, -0.403457, -1.6265, 1.70946, -1.81718)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(5.31078, 0, 0, 0, 13.0073, 0, 0, 0, 0.0979562, 0, 0, -2.6937)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(1, 0, 0, 0, 2.14921, 0, 0, 0, 1, 1.74708, 1.09406, -2.43116)
+mesh = SubResource("CylinderMesh_5shrg")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(-4.37114e-08, 2.05734, 0, -1, -8.99294e-08, 0, 0, 0, 1, 0.162876, 3.1267, -2.43116)
+mesh = SubResource("CylinderMesh_5shrg")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(-4.37114e-08, -2.21111e-08, 1, -1, -1.91849e-15, -4.37114e-08, 0, -0.505844, -4.37114e-08, -1.73391, 3.1267, -2.56466)
+mesh = SubResource("CylinderMesh_5shrg")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(-4.37114e-08, 2.17144, 0, -1, -9.49166e-08, 0, 0, 0, 1, 0.0739879, -0.885579, -2.43116)
+mesh = SubResource("CylinderMesh_5shrg")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(-1, -2.76461e-07, 0, 8.74228e-08, -3.16235, 0, 0, 0, 1, -1.80796, -3.8643, -2.43116)
+mesh = SubResource("CylinderMesh_5shrg")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(-0.707107, 0.326875, 0, -0.707107, -0.326875, 0, 0, 0, 1, -1.31733, -2.89148, -2.43116)
+mesh = SubResource("CylinderMesh_5shrg")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_m10ps")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.586074, -0.677852, 0.443885, 0.187014, 0.646206, 0.739894, -0.78838, -0.35062, 0.505492, 3.22305, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="PlayerCameraPath" type="Node3D" parent="."]
+script = ExtResource("2_83mtf")
+
+[node name="CamPivot" type="Node3D" parent="PlayerCameraPath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.17441, 0)
+
+[node name="PlayerCamera" type="Camera3D" parent="PlayerCameraPath/CamPivot"]
+current = true
+
+[node name="Views" type="Node3D" parent="PlayerCameraPath"]
+
+[node name="FuelView" type="Camera3D" parent="PlayerCameraPath/Views"]
+transform = Transform3D(0.997564, 0, -0.0697565, 0, 1, 0, 0.0697565, 0, 0.997564, 0, -1.10493, 0.0126886)
+
+[node name="NavigationView" type="Camera3D" parent="PlayerCameraPath/Views"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.587544, 0.152456)
+
+[node name="EmergencyView" type="Camera3D" parent="PlayerCameraPath/Views"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15097, -0.116392)
