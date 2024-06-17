@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bwgygoqlgixo1"]
 
 [ext_resource type="Script" path="res://Logic/Cockpit.gd" id="1_7uevs"]
-[ext_resource type="Script" path="res://PlayerCameraPath.gd" id="2_83mtf"]
+[ext_resource type="Script" path="res://Logic/PlayerCameraPath.gd" id="2_83mtf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8cpak"]
 

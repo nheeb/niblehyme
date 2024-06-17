@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1eq2ugsf27fh"]
+
+[ext_resource type="Script" path="res://Logic/Hologram/HoloArea.gd" id="1_o6bga"]
+
+[node name="HoloArea" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_o6bga")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
