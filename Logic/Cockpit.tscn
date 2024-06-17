@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwgygoqlgixo1"]
+[gd_scene load_steps=12 format=3 uid="uid://bwgygoqlgixo1"]
 
 [ext_resource type="Script" path="res://Logic/Cockpit.gd" id="1_7uevs"]
 [ext_resource type="Script" path="res://PlayerCameraPath.gd" id="2_83mtf"]
+[ext_resource type="Script" path="res://Logic/PipeItem.gd" id="3_k32sy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8cpak"]
 
@@ -14,6 +15,23 @@ background_color = Color(0.398438, 0.34552, 0.34552, 1)
 tonemap_mode = 3
 ssao_enabled = true
 glow_enabled = true
+
+[sub_resource type="Curve3D" id="Curve3D_ltvxr"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.05404, 1.65259, 0, 0, 0, 0, 0, 0, 0, 0.880897, 1.63408, 0, 0, 0, 0, 0, 0, 0, 0.908671, -0.347153, 0, 0, 0, 0, 0, 0, 0, -1.00775, -0.393444, 0, 0, 0, 0, 0, 0, 0, -0.915172, -1.28222, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qpcar"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_epfhl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_772nd"]
+size = Vector3(2.82541, 0.141113, 0.282959)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e3284"]
+size = Vector3(3.09831, 0.141113, 0.282959)
 
 [node name="Cockpit" type="Node3D"]
 script = ExtResource("1_7uevs")
@@ -136,3 +154,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.587544, 0.152456)
 
 [node name="EmergencyView" type="Camera3D" parent="PlayerCameraPath/Views"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15097, -0.116392)
+
+[node name="Pipe" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.895)
+curve = SubResource("Curve3D_ltvxr")
+
+[node name="testRigid" type="RigidBody3D" parent="Pipe"]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 5.55112e-17, 0, 0, 1, -1.05404, 1.65259, 0)
+script = ExtResource("3_k32sy")
+duration = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pipe/testRigid"]
+shape = SubResource("SphereShape3D_qpcar")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pipe/testRigid"]
+transform = Transform3D(0.336626, 0, 0, 0, 0.336626, 0, 0, 0, 0.336626, 0, 0, 0)
+mesh = SubResource("SphereMesh_epfhl")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.283769, -1.36803, -0.711765)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.320755, -0.323226, -0.109939)
+shape = SubResource("BoxShape3D_772nd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264828, -1.40905, -1.11183)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275932, -0.429443, -0.0357666)
+shape = SubResource("BoxShape3D_e3284")
