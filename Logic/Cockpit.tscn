@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwgygoqlgixo1"]
+[gd_scene load_steps=19 format=3 uid="uid://bwgygoqlgixo1"]
 
 [ext_resource type="Script" path="res://Logic/Cockpit.gd" id="1_7uevs"]
 [ext_resource type="Script" path="res://Logic/PlayerCameraPath.gd" id="2_83mtf"]
+[ext_resource type="Script" path="res://Logic/PipeItem.gd" id="3_k32sy"]
+[ext_resource type="Script" path="res://Logic/Pipe.gd" id="3_kpr77"]
+[ext_resource type="Script" path="res://Logic/Switch.gd" id="4_cvfuh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8cpak"]
 
@@ -14,6 +17,44 @@ background_color = Color(0.398438, 0.34552, 0.34552, 1)
 tonemap_mode = 3
 ssao_enabled = true
 glow_enabled = true
+
+[sub_resource type="Curve3D" id="Curve3D_ltvxr"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.05404, 1.65259, 0, 0, 0, 0, 0, 0, 0, 0.880897, 1.63408, 0, 0, 0, 0, 0, 0, 0, 0.908671, -0.347153, 0, 0, 0, 0, 0, 0, 0, -1.00775, -0.393444, 0, 0, 0, 0, 0, 0, 0, -0.98453, -1.12615, -1.95503e-05),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qpcar"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_epfhl"]
+
+[sub_resource type="Curve3D" id="Curve3D_7t7uf"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.995718, -1.14852, 0.895, 0, 0, 0, 0, 0, 0, -0.984531, -3.48678, 0.895),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_giig3"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.00131, -1.13734, 0.895, 0, 0, 0, 0, 0, 0, -0.481077, -1.56247, 0.895),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_772nd"]
+size = Vector3(2.82541, 0.141113, 0.282959)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e3284"]
+size = Vector3(3.09831, 0.141113, 0.282959)
+
+[sub_resource type="BoxMesh" id="BoxMesh_crkhn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e44eg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wuv3i"]
+size = Vector3(0.283644, 0.567657, 0.350525)
 
 [node name="Cockpit" type="Node3D"]
 script = ExtResource("1_7uevs")
@@ -136,3 +177,65 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.587544, 0.152456)
 
 [node name="EmergencyView" type="Camera3D" parent="PlayerCameraPath/Views"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15097, -0.116392)
+
+[node name="Pipe" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.895)
+curve = SubResource("Curve3D_ltvxr")
+script = ExtResource("3_kpr77")
+
+[node name="testRigid" type="RigidBody3D" parent="Pipe"]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 5.55112e-17, 0, 0, 1, -1.05404, 1.65259, 0)
+script = ExtResource("3_k32sy")
+duration = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pipe/testRigid"]
+shape = SubResource("SphereShape3D_qpcar")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pipe/testRigid"]
+transform = Transform3D(0.336626, 0, 0, 0, 0.336626, 0, 0, 0, 0.336626, 0, 0, 0)
+mesh = SubResource("SphereMesh_epfhl")
+
+[node name="DiscardPath" type="Path3D" parent="Pipe"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.895)
+curve = SubResource("Curve3D_7t7uf")
+
+[node name="CollectPath" type="Path3D" parent="Pipe"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.895)
+curve = SubResource("Curve3D_giig3")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.283769, -1.36803, -0.711765)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.320755, -0.323226, -0.109939)
+shape = SubResource("BoxShape3D_772nd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264828, -1.40905, -1.11183)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275932, -0.429443, -0.0357666)
+shape = SubResource("BoxShape3D_e3284")
+
+[node name="Switch" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.261858, -1.03075, -1.29419)
+script = ExtResource("4_cvfuh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Switch"]
+transform = Transform3D(0.26967, 0, 0, 0, 0.538452, 0, 0, 0, 0.139584, -0.119011, 0, 0)
+mesh = SubResource("BoxMesh_crkhn")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Switch"]
+transform = Transform3D(0.096736, 0, 0, 0, 0.2548, 0.0631935, 0, -0.243773, 0.066052, -0.119011, 0.12325, 0.0987629)
+mesh = SubResource("BoxMesh_e44eg")
+
+[node name="Area3D" type="Area3D" parent="Switch"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Switch/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.122113, -0.00587463, 0.111969)
+shape = SubResource("BoxShape3D_wuv3i")
+
+[connection signal="input_event" from="Switch/Area3D" to="Switch" method="_on_area_3d_input_event"]
