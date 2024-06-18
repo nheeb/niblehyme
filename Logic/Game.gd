@@ -2,7 +2,7 @@ extends Node
 
 @onready var sauce: Sauce = $Sauce
 
-var DEBUG_CONTROL_DRILL_WITH_ARROW_KEYS := true
+var DEBUG_CONTROL_DRILL_WITH_ARROW_KEYS := true # turn this off later
 
 signal drill_hit_object(holo_object: HoloObject)
 
