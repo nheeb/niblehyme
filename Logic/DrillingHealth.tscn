@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://djqojwwng6ogn"]
+
+[ext_resource type="Script" path="res://Logic/DrillingHealth.gd" id="1_1t262"]
+
+[node name="DrillingHealth" type="Node"]
+script = ExtResource("1_1t262")

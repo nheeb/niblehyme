@@ -1,5 +1,7 @@
 class_name HoloObject extends Node3D
 
+var health: DrillingHealth
+
 var active := true
 var holo_pos: Vector3:
 	set(x):
@@ -12,7 +14,14 @@ func update_visibility(visibility_progress: float):
 
 func _ready() -> void:
 	holo_pos = position
-	print(holo_pos)
+	## Connecting the Drilling Health
+	if has_node("DrillingHealth"):
+		health = get_node("DrillingHealth")
+	else:
+		health = DrillingHealth.new()
+		add_child(health)
+	health.chunk_drilled.connect(drill_chunk)
+	health.completely_drilled.connect(destroy)
 
 func is_touching_drill() -> bool:
 	if has_node("HoloArea"):
@@ -24,8 +33,14 @@ func is_touching_drill() -> bool:
 func drill_first_contact():
 	_on_drill_first_contact()
 
-func drill_damage(drill_power: float):
-	_on_drill_damage(drill_power)
+func drill_damage(damage: float):
+	health.drill_damage(damage)
+
+func drill_chunk():
+	_on_chunk_drilled()
+
+func destroy():
+	_on_destroyed()
 
 #####################
 ## For overwriting ##
@@ -33,5 +48,11 @@ func drill_damage(drill_power: float):
 func _on_drill_first_contact():
 	pass
 
-func _on_drill_damage(drill_power: float):
+func _on_chunk_drilled():
+	pass
+
+func _on_destroyed():
+	pass
+
+func _on_discovered():
 	pass

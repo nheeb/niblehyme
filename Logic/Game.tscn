@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://rd4ruh6xtfb1"]
+[gd_scene load_steps=4 format=3 uid="uid://rd4ruh6xtfb1"]
 
 [ext_resource type="Script" path="res://Logic/Game.gd" id="1_gxxh0"]
+[ext_resource type="Script" path="res://Logic/Sauce.gd" id="2_noagd"]
+[ext_resource type="PackedScene" uid="uid://djqojwwng6ogn" path="res://Logic/DrillingHealth.tscn" id="3_aun7o"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_gxxh0")
+
+[node name="Sauce" type="Node" parent="."]
+script = ExtResource("2_noagd")
+
+[node name="DrillingHealth" parent="Sauce" instance=ExtResource("3_aun7o")]
+limited_chunks = false
+
+[connection signal="chunk_drilled" from="Sauce/DrillingHealth" to="Sauce" method="_on_drilling_health_chunk_drilled"]

@@ -1,7 +1,7 @@
 extends RigidBody3D
 class_name  PipeItem
 
-@export var duration : float = 5
+var duration : float = 5
 
 func _ready():
 	freeze = true
@@ -16,6 +16,8 @@ func _ready():
 
 
 func flow_through_pipe() -> void:
+	duration = DrillStats.pipe_flow_duration
+	
 	var new_path_follow = PathFollow3D.new()
 	var process_frame = get_tree().process_frame
 	await process_frame

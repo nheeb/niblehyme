@@ -21,6 +21,9 @@ func _process(delta: float) -> void:
 				MINERAL_DELAY + randf() * MINERAL_DELAY_VARIANCE).timeout
 			mineral_queue_cooldown = false
 
+func add_to_mineral_queue(mineral: Mineral):
+	mineral_queue.append(mineral)
+
 func spawn_mineral(mineral: Mineral):
 	pass
 
