@@ -2,11 +2,15 @@ extends Node
 
 var DEBUG_CONTROL_DRILL_WITH_ARROW_KEYS := true
 
-signal on_drill_hit_object(holo_object: HoloObject)
+signal drill_hit_object(holo_object: HoloObject)
 
 const LAYER_SIZE = 10
 var current_layer := 0
-signal on_new_layer_reached(depth: float)
+signal new_layer_reached(layer: int)
+
+func advance_layer():
+	current_layer += 1
+	new_layer_reached.emit(current_layer)
 
 var cockpit
 var main_pipe : Pipe

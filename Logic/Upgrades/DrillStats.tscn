@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxur55bytgjss"]
+
+[ext_resource type="Script" path="res://Logic/Upgrades/DrillStats.gd" id="1_tmb67"]
+
+[node name="DrillStats" type="Node"]
+script = ExtResource("1_tmb67")

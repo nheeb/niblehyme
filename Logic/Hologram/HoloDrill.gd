@@ -44,3 +44,4 @@ func update_position(delta: float) -> void:
 	holo_pos += drill_direction * delta * MOVEMENT_VELOCITY_MAX * movement_power
 
 	if holo_pos.y > (1 + Game.current_layer) * Game.LAYER_SIZE:
+		Game.advance_layer()
