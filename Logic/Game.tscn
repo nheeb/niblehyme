@@ -1,16 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://rd4ruh6xtfb1"]
+[gd_scene load_steps=8 format=3 uid="uid://rd4ruh6xtfb1"]
 
 [ext_resource type="Script" path="res://Logic/Game.gd" id="1_gxxh0"]
 [ext_resource type="Script" path="res://Logic/Sauce.gd" id="2_noagd"]
+[ext_resource type="Script" path="res://Logic/Minerals/MineralDropTable.gd" id="3_60urw"]
 [ext_resource type="PackedScene" uid="uid://djqojwwng6ogn" path="res://Logic/DrillingHealth.tscn" id="3_aun7o"]
+
+[sub_resource type="Resource" id="Resource_ehfi1"]
+script = ExtResource("3_60urw")
+pot = Array[int]([0, 0, 0, 0, 0, 0, 0, 1, 1, 3])
+reset_after_drawing = true
+
+[sub_resource type="Resource" id="Resource_mo04p"]
+script = ExtResource("3_60urw")
+pot = Array[int]([0, 0, 0, 0, 0, 1, 1, 3, 3, 2])
+reset_after_drawing = true
+
+[sub_resource type="Resource" id="Resource_iomgu"]
+script = ExtResource("3_60urw")
+pot = Array[int]([0, 1, 3, 1])
+reset_after_drawing = true
 
 [node name="Game" type="Node"]
 script = ExtResource("1_gxxh0")
 
 [node name="Sauce" type="Node" parent="."]
 script = ExtResource("2_noagd")
+drop_tables = Array[ExtResource("3_60urw")]([SubResource("Resource_ehfi1"), SubResource("Resource_mo04p"), SubResource("Resource_iomgu")])
+drop_tables_layers = Array[int]([0, 20, 50])
 
 [node name="DrillingHealth" parent="Sauce" instance=ExtResource("3_aun7o")]
 limited_chunks = false
+chunk_health = 0.7
+chunk_health_variance = 2.0
 
 [connection signal="chunk_drilled" from="Sauce/DrillingHealth" to="Sauce" method="_on_drilling_health_chunk_drilled"]

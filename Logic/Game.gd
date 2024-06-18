@@ -1,4 +1,4 @@
-extends Node
+class_name GameInfo extends Node
 
 @onready var sauce: Sauce = $Sauce
 

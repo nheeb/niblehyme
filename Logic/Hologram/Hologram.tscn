@@ -7,9 +7,6 @@
 [node name="Hologram" type="Node3D"]
 script = ExtResource("1_kcikd")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.947768, 0.318959, 0, -0.318959, 0.947768, 0, 0.828833, 2.52673)
-
 [node name="DrillCenterPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
@@ -25,7 +22,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26801, -6.34575, 2.79871)
 [node name="HoloObstacle3" parent="DrillCenterPivot" instance=ExtResource("3_pxgvl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26801, -10.6069, -7.94382)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="HoloObstacle4" parent="DrillCenterPivot" instance=ExtResource("3_pxgvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26801, -17.6616, -1.05757)
+
+[node name="HoloObstacle5" parent="DrillCenterPivot" instance=ExtResource("3_pxgvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26801, -22.7008, -8.02448)
+
+[node name="HoloObstacle6" parent="DrillCenterPivot" instance=ExtResource("3_pxgvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04261, -29.7418, 0.993131)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

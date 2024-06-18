@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://demmdoq41s0ft"]
+
+[ext_resource type="Script" path="res://Logic/Minerals/Mineral.gd" id="1_gwu1k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yc8yh"]
+albedo_color = Color(0.375, 0.368774, 0.275391, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6ksto"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lwkyx"]
+size = Vector3(0.585236, 0.893066, 1.30237)
+
+[node name="MineralStone" type="RigidBody3D"]
+script = ExtResource("1_gwu1k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.209414, 0, 0, 0, 0.118252, 0.172832, 0, -0.172832, 0.118252, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_yc8yh")
+mesh = SubResource("CapsuleMesh_6ksto")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.271927, 0, 0, 0, 0.271927, 0, 0, 0, 0.271927, 0.0159125, -0.0145391, -0.00406331)
+shape = SubResource("BoxShape3D_lwkyx")

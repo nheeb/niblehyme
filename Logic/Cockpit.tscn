@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bwgygoqlgixo1"]
+[gd_scene load_steps=21 format=3 uid="uid://bwgygoqlgixo1"]
 
 [ext_resource type="Script" path="res://Logic/Cockpit.gd" id="1_7uevs"]
 [ext_resource type="Script" path="res://Logic/PlayerCameraPath.gd" id="2_83mtf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Logic/Pipe.gd" id="3_kpr77"]
 [ext_resource type="Script" path="res://Logic/Switch.gd" id="4_cvfuh"]
 [ext_resource type="Script" path="res://Logic/CockpitInput.gd" id="6_5wlna"]
+[ext_resource type="PackedScene" uid="uid://cbulkkcj4jbak" path="res://Logic/Hologram/Hologram.tscn" id="7_1dxs8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8cpak"]
 
@@ -243,5 +244,8 @@ shape = SubResource("BoxShape3D_wuv3i")
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("6_5wlna")
+
+[node name="Hologram" parent="." instance=ExtResource("7_1dxs8")]
+transform = Transform3D(0.477551, 0, 0, 0, 0.477551, 0, 0, 0, 0.477551, -0.107247, 0.506323, -0.842418)
 
 [connection signal="input_event" from="Switch/Area3D" to="Switch" method="_on_area_3d_input_event"]

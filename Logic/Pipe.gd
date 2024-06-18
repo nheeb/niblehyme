@@ -7,12 +7,12 @@ class_name Pipe
 var length : float
 var active_secondary_path : Path3D
 
-const MINERAL_DELAY = .25
-const MINERAL_DELAY_VARIANCE = .15
+const MINERAL_DELAY = .2
+const MINERAL_DELAY_VARIANCE = .1
 var mineral_queue : Array[Mineral]
 var mineral_queue_cooldown := false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not mineral_queue_cooldown:
 		if not mineral_queue.is_empty():
 			mineral_queue_cooldown = true
@@ -25,7 +25,10 @@ func add_to_mineral_queue(mineral: Mineral):
 	mineral_queue.append(mineral)
 
 func spawn_mineral(mineral: Mineral):
-	pass
+	add_child(mineral)
+	mineral.flow_through_pipe()
+	await get_tree().create_timer(.1).timeout
+	mineral.show()
 
 func _ready():
 	Game.main_pipe = self
