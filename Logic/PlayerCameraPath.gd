@@ -14,8 +14,10 @@ var transition_direction: int
 var transition_tween: Tween
 
 func _ready() -> void:
+	Game.camera = %PlayerCamera
 	views.append_array(view_root.get_children())
 	view_count = len(views)
+	pivot.global_transform = views[current_view].global_transform
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("view_up"):
@@ -45,14 +47,24 @@ func _process(delta: float) -> void:
 
 
 func check_mouse_colliding() -> void:
-	var camera_pivot = %CamPivot.global_position
 	var camera = %PlayerCamera
+	Game.mouse_normal = camera.project_ray_normal(get_viewport().get_mouse_position())
+	var camera_pivot = %CamPivot.global_position
 	var plane = Plane(Vector3.FORWARD,.7)
-	var mouse_position = plane.intersects_ray(camera_pivot,camera.project_ray_normal(get_viewport().get_mouse_position()))
+	var mouse_position = plane.intersects_ray(
+		camera_pivot, Game.mouse_normal
+		)
 
-	%RayCast3D.target_position = mouse_position - camera_pivot
+	%RayCast3D.target_position = %RayCast3D.to_local(mouse_position) * 5.0
 	var obj = %RayCast3D.get_collider()
 	
-	if (obj is PipeItem): Game.raycast_object = obj
+	if (obj is PipeItem):
+		Game.raycast_object = obj
+	elif (obj is DeviceArea):
+		Game.raycast_object = obj.device
+	elif obj == null:
+		Game.raycast_object = null
+	else:
+		printerr("Unknown collider: %s" % obj)
 	if (mouse_position != null): Game.mouse_position = mouse_position
 

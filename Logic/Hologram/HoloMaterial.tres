@@ -1,0 +1,61 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dspatcbfs7qji"]
+
+[sub_resource type="Shader" id="Shader_betab"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.2.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+
+varying vec3 world_pos;
+
+uniform vec3 emission_color: source_color;
+uniform float time_scale = 8.0;
+uniform float noise_strength = 3.0;
+
+uniform sampler2D noise;
+
+global uniform float holo_world_scale;
+
+void vertex() {
+	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz * holo_world_scale;
+}
+
+void fragment() {
+	float noise_xz = texture(noise, world_pos.xz).r;
+	float t = TIME * time_scale;
+	float holo_value = .5 * sin(world_pos.y * 20.0 - t + noise_xz * noise_strength) + .5;
+	ALPHA = pow(holo_value, .7);
+	ALBEDO = albedo.rgb;
+	vec3 em = mix(emission_color, albedo.rgb, .5);
+	EMISSION = em * pow(smoothstep(.5, .9, holo_value), 2.0) * 0.1
+			+ em * pow(smoothstep(.8, .99, holo_value), 3.0) * 0.6;
+	ALPHA *= texture(noise, SCREEN_UV * 2.0).r;
+	//vec2 base_uv = UV;
+	//vec4 albedo_tex = texture(texture_albedo,base_uv);
+	//ALBEDO = albedo.rgb * albedo_tex.rgb;
+	//float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	//METALLIC = metallic_tex * metallic;
+	//vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	//float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	//ROUGHNESS = roughness_tex * roughness;
+	//SPECULAR = specular;
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xeqey"]
+frequency = 0.0412
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_se56j"]
+seamless = true
+noise = SubResource("FastNoiseLite_xeqey")
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_betab")
+shader_parameter/albedo = Color(0.289063, 1, 0, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/time_scale = 8.0
+shader_parameter/noise_strength = 3.0
+shader_parameter/noise = SubResource("NoiseTexture2D_se56j")

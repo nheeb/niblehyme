@@ -4,7 +4,7 @@ const HOLO_VIEW_RANGE = 14.0
 const HOLO_VIEW_FADE = 2.0
 const HOLO_KEEP_RANGE = 30.0
 
-var center_object: HoloObject
+@export var center_object: HoloObject
 
 func get_all_holo_objects() -> Array[HoloObject]:
 	var list : Array[HoloObject] = []
@@ -16,7 +16,7 @@ func add_holo_object_as_child(ho: HoloObject):
 	ho.position = ho.holo_pos
 
 func _ready() -> void:
-	center_object = $DrillCenterPivot/HoloDrill
+	pass
 
 func _rare_process() -> void:
 	## Delete far objects

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://vl01sd8u04f0"]
+
+[ext_resource type="Script" path="res://Logic/Devices/DeviceArea.gd" id="1_cn2je"]
+
+[node name="DeviceArea" type="Area3D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_cn2je")

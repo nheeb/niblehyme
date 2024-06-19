@@ -6,6 +6,7 @@
 
 [node name="HoloObstacle" type="Node3D"]
 script = ExtResource("1_paque")
+holo_color = Color(0.316406, 0.316406, 0.316406, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.41656, 0, 0, 0, 2.41656, 0, 0, 0, 2.41656, 0, 0, 0)

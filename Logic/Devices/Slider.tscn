@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://btmbimerxsxa3"]
+
+[ext_resource type="Script" path="res://Logic/Devices/Slider.gd" id="1_ncm7l"]
+[ext_resource type="PackedScene" uid="uid://vl01sd8u04f0" path="res://Logic/Devices/DeviceArea.tscn" id="2_1t5f6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rakpf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_cdkuu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4mkwj"]
+size = Vector3(1, 0.0979004, 0.202682)
+
+[node name="Slider" type="Node3D"]
+script = ExtResource("1_ncm7l")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 0.0398855, 0, 0, 0, 0.203661, 0, 0, 0)
+mesh = SubResource("BoxMesh_rakpf")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.888367, 0, 0, 0, 0.0398855, 0, 0, 0, 0.026403, 0, 0.0186228, 0)
+mesh = SubResource("BoxMesh_rakpf")
+skeleton = NodePath("../..")
+
+[node name="MarkerOne" type="Marker3D" parent="Model"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40494, 0.0418269, 0)
+gizmo_extents = 0.1
+
+[node name="MarkerZero" type="Marker3D" parent="Model"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397128, 0.0418269, 0)
+gizmo_extents = 0.1
+
+[node name="MarkerPlaneNormal" type="Marker3D" parent="Model/MarkerZero"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+gizmo_extents = 0.02
+
+[node name="SliderHead" type="MeshInstance3D" parent="Model"]
+unique_name_in_owner = true
+transform = Transform3D(0.0855529, 0, 0, 0, 0.0855529, 0, 0, 0, 0.0855529, -0.366407, 0.0286962, 7.53999e-06)
+mesh = SubResource("SphereMesh_cdkuu")
+
+[node name="DeviceArea" parent="." instance=ExtResource("2_1t5f6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeviceArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0286865, 0.000740051)
+shape = SubResource("BoxShape3D_4mkwj")

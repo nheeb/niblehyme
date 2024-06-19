@@ -13,7 +13,10 @@ func update_visibility(visibility_progress: float):
 	visible = visibility_progress >= .1
 
 func _ready() -> void:
+	## Updating holo pos
 	holo_pos = position
+	## Applying material
+	set_holo_material()
 	## Connecting the Drilling Health
 	if has_node("DrillingHealth"):
 		health = get_node("DrillingHealth")
@@ -41,6 +44,14 @@ func drill_chunk():
 
 func destroy():
 	_on_destroyed()
+
+const HOLO_MATERIAL = preload("res://Logic/Hologram/HoloMaterial.tres")
+@export var holo_color := Color.GREEN
+func set_holo_material():
+	var mat = HOLO_MATERIAL.duplicate()
+	for mi in Utility.get_recursive_mesh_instances(self):
+		mi.material_override = mat
+		mi.material_override.set("shader_parameter/albedo", holo_color)
 
 #####################
 ## For overwriting ##
