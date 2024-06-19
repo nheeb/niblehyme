@@ -16,3 +16,5 @@ func advance_layer():
 
 var cockpit : Cockpit
 var main_pipe : Pipe
+var raycast_object 
+var mouse_position

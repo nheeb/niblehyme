@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bwgygoqlgixo1"]
+[gd_scene load_steps=22 format=3 uid="uid://bwgygoqlgixo1"]
 
 [ext_resource type="Script" path="res://Logic/Cockpit.gd" id="1_7uevs"]
 [ext_resource type="Script" path="res://Logic/PlayerCameraPath.gd" id="2_83mtf"]
@@ -57,6 +57,8 @@ size = Vector3(3.09831, 0.141113, 0.282959)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wuv3i"]
 size = Vector3(0.283644, 0.567657, 0.350525)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_of0ak"]
 
 [node name="Cockpit" type="Node3D"]
 script = ExtResource("1_7uevs")
@@ -167,7 +169,11 @@ script = ExtResource("2_83mtf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.17441, 0)
 
 [node name="PlayerCamera" type="Camera3D" parent="PlayerCameraPath/CamPivot"]
+unique_name_in_owner = true
 current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="PlayerCameraPath/CamPivot"]
+unique_name_in_owner = true
 
 [node name="Views" type="Node3D" parent="PlayerCameraPath"]
 
@@ -247,5 +253,12 @@ script = ExtResource("6_5wlna")
 
 [node name="Hologram" parent="." instance=ExtResource("7_1dxs8")]
 transform = Transform3D(0.477551, 0, 0, 0, 0.477551, 0, 0, 0, 0.477551, -0.107247, 0.506323, -0.842418)
+
+[node name="RayCastCollider" type="Node3D" parent="."]
+
+[node name="PlaneReference" type="MeshInstance3D" parent="RayCastCollider"]
+unique_name_in_owner = true
+transform = Transform3D(1.25292, 0, 0, 0, -4.37114e-08, -3.19313, 0, 1, -1.39576e-07, 0, 5.91378e-08, -1.35292)
+mesh = SubResource("PlaneMesh_of0ak")
 
 [connection signal="input_event" from="Switch/Area3D" to="Switch" method="_on_area_3d_input_event"]
