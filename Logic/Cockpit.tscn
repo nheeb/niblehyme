@@ -166,6 +166,7 @@ shadow_enabled = true
 script = ExtResource("2_83mtf")
 
 [node name="CamPivot" type="Node3D" parent="PlayerCameraPath"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.17441, 0)
 
 [node name="PlayerCamera" type="Camera3D" parent="PlayerCameraPath/CamPivot"]

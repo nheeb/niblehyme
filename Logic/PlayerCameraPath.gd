@@ -45,14 +45,14 @@ func _process(delta: float) -> void:
 
 
 func check_mouse_colliding() -> void:
-	var camera_pivot = get_parent().global_position
+	var camera_pivot = %CamPivot.global_position
 	var camera = %PlayerCamera
-	var plane = Plane(%PlaneReference.global_position,.7)
+	var plane = Plane(Vector3.FORWARD,.7)
 	var mouse_position = plane.intersects_ray(camera_pivot,camera.project_ray_normal(get_viewport().get_mouse_position()))
-	
-	%RayCast3D.target_position = mouse_position
+
+	%RayCast3D.target_position = mouse_position - camera_pivot
 	var obj = %RayCast3D.get_collider()
 	
 	if (obj is PipeItem): Game.raycast_object = obj
 	if (mouse_position != null): Game.mouse_position = mouse_position
-#	print(mouse_position, obj)
+

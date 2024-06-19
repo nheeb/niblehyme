@@ -68,7 +68,6 @@ var dragging : bool = false
 func _unhandled_input(event):
 	if (freeze): return
 	if (Game.raycast_object != self): return
-	
 
 	if (event is InputEventMouseButton and (event.button_index == MOUSE_BUTTON_LEFT)):
 		if (event.is_pressed()):
@@ -76,10 +75,7 @@ func _unhandled_input(event):
 		if (event.is_released()):
 			dragging = false
 
+
 func _process(_delta):
 	if (dragging):
 		global_position = global_position.lerp(Game.mouse_position, .2)
-
-		
-	
-
