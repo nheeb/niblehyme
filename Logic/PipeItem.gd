@@ -35,7 +35,7 @@ func flow_through_pipe() -> void:
 	var secondary_path : Path3D = Game.main_pipe.active_secondary_path
 	
 	var speed : float = main_pipe.length / duration 
-	var secondary_path_duration : float = secondary_path.curve.get_baked_length() * speed
+	var secondary_path_duration : float = secondary_path.curve.get_baked_length() / speed
 	
 	if (get_parent() is PathFollow3D):
 		get_parent().progress_ratio = 0
