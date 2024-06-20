@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Game="*res://Logic/Game.tscn"
 Utility="*res://Logic/Utility.gd"
 DrillStats="*res://Logic/Upgrades/DrillStats.tscn"
+Settings="*res://Singleton/Settings.tscn"
 
 [editor]
 
