@@ -1,29 +1,24 @@
-[gd_scene load_steps=28 format=3 uid="uid://bwgygoqlgixo1"]
+[gd_scene load_steps=35 format=3 uid="uid://bwgygoqlgixo1"]
 
 [ext_resource type="Script" path="res://Logic/Cockpit.gd" id="1_7uevs"]
 [ext_resource type="Script" path="res://Logic/FuelHurensohnKlappe.gd" id="2_7shuk"]
 [ext_resource type="Script" path="res://Logic/PlayerCameraPath.gd" id="2_83mtf"]
+[ext_resource type="Texture2D" uid="uid://beeseec1i66aw" path="res://Assets/Materials/Tiling Texture Background/Tiling texturessetup_BGTiling_BaseColor.png" id="3_1fomo"]
 [ext_resource type="Script" path="res://Logic/PipeItem.gd" id="3_k32sy"]
 [ext_resource type="Script" path="res://Logic/Pipe.gd" id="3_kpr77"]
+[ext_resource type="Texture2D" uid="uid://s3ldc26r5koi" path="res://Assets/Materials/Tiling Texture Background/Tiling texturessetup_BGTiling_Metallic.png" id="4_2s8p4"]
 [ext_resource type="Script" path="res://Logic/Switch.gd" id="4_cvfuh"]
+[ext_resource type="Texture2D" uid="uid://djoxkwaaotgrq" path="res://Assets/Materials/Tiling Texture Background/Tiling texturessetup_BGTiling_Normal.png" id="5_kecoc"]
+[ext_resource type="Texture2D" uid="uid://s4gcy0cgmiwj" path="res://Assets/Materials/Tiling Texture Background/Tiling texturessetup_BGTiling_Roughness.png" id="6_3hx5n"]
 [ext_resource type="Script" path="res://Logic/CockpitInput.gd" id="6_5wlna"]
 [ext_resource type="PackedScene" uid="uid://cbulkkcj4jbak" path="res://Logic/Hologram/Hologram.tscn" id="7_1dxs8"]
+[ext_resource type="PackedScene" uid="uid://c70g86f6b624h" path="res://Assets/Models/Tubes/WindowTube.fbx" id="7_s4l0v"]
 [ext_resource type="PackedScene" uid="uid://btmbimerxsxa3" path="res://Logic/Devices/Slider.tscn" id="8_vl6ol"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_8cpak"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hqn4p"]
 size = Vector3(1.32663, 1.07761, 1.55566)
 
-[sub_resource type="Animation" id="Animation_tjxrv"]
-resource_name = "Open"
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, -0.793353, 0, 0.608761)
+[sub_resource type="BoxMesh" id="BoxMesh_8cpak"]
 
 [sub_resource type="Animation" id="Animation_p18y8"]
 resource_name = "Close"
@@ -35,11 +30,31 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.793353, 0, 0.608761, 0.5, 1, 0, 1.93715e-07, 0, 1)
 
+[sub_resource type="Animation" id="Animation_tjxrv"]
+resource_name = "Open"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, -0.793353, 0, 0.608761)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3l00x"]
 _data = {
 "Close": SubResource("Animation_p18y8"),
 "Open": SubResource("Animation_tjxrv")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r56wl"]
+albedo_texture = ExtResource("3_1fomo")
+metallic = 0.61
+metallic_specular = 1.0
+metallic_texture = ExtResource("4_2s8p4")
+roughness_texture = ExtResource("6_3hx5n")
+normal_enabled = true
+normal_texture = ExtResource("5_kecoc")
+uv1_scale = Vector3(5.975, 8.78, 5.975)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_5shrg"]
 radial_segments = 16
@@ -50,6 +65,11 @@ background_color = Color(0.398438, 0.34552, 0.34552, 1)
 tonemap_mode = 3
 ssao_enabled = true
 glow_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qulbr"]
+frequency = 0.05
+fractal_octaves = 4
+fractal_gain = 0.8
 
 [sub_resource type="Curve3D" id="Curve3D_ltvxr"]
 _data = {
@@ -98,28 +118,11 @@ script = ExtResource("1_7uevs")
 [node name="Prototype" type="Node3D" parent="."]
 transform = Transform3D(0.498589, 0, 0, 0, 0.498589, 0, 0, 0, 0.498589, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Prototype"]
-transform = Transform3D(3.5175, 0, 0, 0, 0.0802565, 0, 0, 0, 1.96475, -0.555538, 0, -1.97888)
-mesh = SubResource("BoxMesh_8cpak")
-
-[node name="MeshInstance3D15" type="MeshInstance3D" parent="Prototype"]
-transform = Transform3D(0.920938, 0, 0.824539, 0.920938, -1.08335e-08, -0.824539, 4.02555e-08, 0.247841, -3.60417e-08, -1.50125, 4.72203, -2.63439)
-mesh = SubResource("BoxMesh_8cpak")
-
-[node name="MeshInstance3D17" type="MeshInstance3D" parent="Prototype"]
-transform = Transform3D(7.83972e-23, 7.66042e-09, 1.40326, 2.01932, -7.66042e-09, -2.25661e-23, 6.24144e-08, 0.247841, -4.33728e-08, 0.303045, 4.98358, -2.66052)
-mesh = SubResource("BoxMesh_8cpak")
-
-[node name="MeshInstance3D18" type="MeshInstance3D" parent="Prototype"]
-transform = Transform3D(2.20375e-23, 7.66042e-09, 1.28229, 0.567633, -7.66042e-09, -2.06208e-23, 1.75448e-08, 0.247841, -3.96338e-08, 1.91371, 5.51477, -2.57011)
-mesh = SubResource("BoxMesh_8cpak")
-
 [node name="FuelHurensohnKlappe" type="Node3D" parent="Prototype"]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.220746, -2.12005, -2.67149)
 script = ExtResource("2_7shuk")
 
 [node name="Area3D" type="Area3D" parent="Prototype/FuelHurensohnKlappe"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Prototype/FuelHurensohnKlappe/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.672043, 0.0440822, 0.277832)
@@ -148,6 +151,22 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_3l00x")
 }
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(3.5175, 0, 0, 0, 0.0802565, 0, 0, 0, 1.96475, -0.555538, 0, -1.97888)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(0.920938, 0, 0.824539, 0.920938, -1.08335e-08, -0.824539, 4.02555e-08, 0.247841, -3.60417e-08, -1.50125, 4.72203, -2.63439)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(7.83972e-23, 7.66042e-09, 1.40326, 2.01932, -7.66042e-09, -2.25661e-23, 6.24144e-08, 0.247841, -4.33728e-08, 0.303045, 4.98358, -2.66052)
+mesh = SubResource("BoxMesh_8cpak")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Prototype"]
+transform = Transform3D(2.20375e-23, 7.66042e-09, 1.28229, 0.567633, -7.66042e-09, -2.06208e-23, 1.75448e-08, 0.247841, -3.96338e-08, 1.91371, 5.51477, -2.57011)
+mesh = SubResource("BoxMesh_8cpak")
 
 [node name="MeshInstance3D19" type="MeshInstance3D" parent="Prototype"]
 transform = Transform3D(2.20375e-23, 7.66042e-09, 0.656776, 0.567633, -7.66042e-09, -1.05618e-23, 1.75448e-08, 0.247841, -2.03e-08, 1.91371, 4.67054, -2.57011)
@@ -183,6 +202,7 @@ mesh = SubResource("BoxMesh_8cpak")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Prototype"]
 transform = Transform3D(5.31078, 0, 0, 0, 13.0073, 0, 0, 0, 0.0979562, 0, 0, -2.6937)
+material_override = SubResource("StandardMaterial3D_r56wl")
 mesh = SubResource("BoxMesh_8cpak")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="Prototype"]
@@ -209,6 +229,8 @@ mesh = SubResource("CylinderMesh_5shrg")
 transform = Transform3D(-0.707107, 0.326875, 0, -0.707107, -0.326875, 0, 0, 0, 1, -1.31733, -2.89148, -2.43116)
 mesh = SubResource("CylinderMesh_5shrg")
 
+[node name="Root Scene" parent="Prototype" instance=ExtResource("7_s4l0v")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_m10ps")
 
@@ -219,16 +241,20 @@ shadow_enabled = true
 
 [node name="PlayerCameraPath" type="Node3D" parent="."]
 script = ExtResource("2_83mtf")
+noise = SubResource("FastNoiseLite_qulbr")
 
 [node name="CamPivot" type="Node3D" parent="PlayerCameraPath"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.17441, 0)
 
-[node name="PlayerCamera" type="Camera3D" parent="PlayerCameraPath/CamPivot"]
+[node name="ShakePivot" type="Node3D" parent="PlayerCameraPath/CamPivot"]
+unique_name_in_owner = true
+
+[node name="PlayerCamera" type="Camera3D" parent="PlayerCameraPath/CamPivot/ShakePivot"]
 unique_name_in_owner = true
 current = true
 
-[node name="RayCast3D" type="RayCast3D" parent="PlayerCameraPath/CamPivot"]
+[node name="RayCast3D" type="RayCast3D" parent="PlayerCameraPath/CamPivot/ShakePivot"]
 unique_name_in_owner = true
 collision_mask = 5
 collide_with_areas = true
@@ -310,7 +336,14 @@ shape = SubResource("BoxShape3D_wuv3i")
 script = ExtResource("6_5wlna")
 
 [node name="Hologram" parent="." instance=ExtResource("7_1dxs8")]
-transform = Transform3D(0.477551, 0, 0, 0, 0.477551, 0, 0, 0, 0.477551, -0.130718, 0.687837, -0.946732)
+transform = Transform3D(0.373319, 0, 0, 0, 0.373319, 0, 0, 0, 0.373319, -0.0281019, 0.687837, -0.946732)
+
+[node name="GPUParticles3D" parent="Hologram/Markers" index="0"]
+emitting = true
+visibility_aabb = AABB(-1.01925, -1.71087, -0.885521, 2.03849, 2.50084, 1.77202)
+
+[node name="SocketY" parent="Hologram/Markers" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.76292, 0)
 
 [node name="RayCastCollider" type="Node3D" parent="."]
 
@@ -332,7 +365,7 @@ start_progress = 0.5
 cockpit_input_name = "navigation_z"
 
 [node name="Slider3" parent="Devices" instance=ExtResource("8_vl6ol")]
-transform = Transform3D(-0.577129, 0, -5.04542e-08, 0, 0.577129, 0, 5.04542e-08, 0, -0.577129, -0.198223, 0.0271702, -0.582934)
+transform = Transform3D(-0.577129, 0, -5.04542e-08, 0, 0.577129, 0, 5.04542e-08, 0, -0.577129, -0.0356739, 0.0271702, -0.582934)
 min_value = -1.0
 start_progress = 0.5
 cockpit_input_name = "navigation_x"
@@ -341,3 +374,5 @@ cockpit_input_name = "navigation_x"
 [connection signal="body_exited" from="Prototype/FuelHurensohnKlappe/Area3D" to="Prototype/FuelHurensohnKlappe" method="_on_area_3d_body_exited"]
 [connection signal="input_event" from="Prototype/FuelHurensohnKlappe/Area3D" to="Prototype/FuelHurensohnKlappe" method="_on_area_3d_input_event"]
 [connection signal="input_event" from="Switch/Area3D" to="Switch" method="_on_area_3d_input_event"]
+
+[editable path="Hologram"]

@@ -22,4 +22,14 @@ follow_object = NodePath("../HoloDrill")
 wait_time = 5.0
 autostart = true
 
+[node name="Markers" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Markers"]
+emitting = false
+amount = 1
+visibility_aabb = AABB(-2.01656, -4, -4, 4.03311, 8, 8)
+
+[node name="SocketY" type="Marker3D" parent="Markers"]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="Timer" to="." method="_rare_process"]

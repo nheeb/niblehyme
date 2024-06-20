@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct67qqmsjiy6x"]
+
+[ext_resource type="Script" path="res://Logic/Hologram/HoloSocket.gd" id="1_0mrsn"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pch5y"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.05
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3i0mt"]
+height = 1.0
+radial_segments = 8
+rings = 1
+
+[node name="HoloSocket" type="Node3D"]
+script = ExtResource("1_0mrsn")
+
+[node name="SocketBase" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_pch5y")
+
+[node name="SocketPole" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SocketPole"]
+transform = Transform3D(-0.2, 0, -1.74846e-08, 0, 1, 0, 1.74846e-08, 0, -0.2, 0, 0.5, 0)
+mesh = SubResource("CylinderMesh_3i0mt")
+skeleton = NodePath("../..")

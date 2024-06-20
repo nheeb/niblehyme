@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlf5hpolm6ub0"]
+[gd_scene load_steps=14 format=3 uid="uid://dlf5hpolm6ub0"]
 
 [ext_resource type="Script" path="res://Logic/Hologram/HoloGoldOre.gd" id="1_mpxmg"]
 [ext_resource type="Texture2D" uid="uid://cue3n58t8t1hv" path="res://Assets/KenneyParticles/star_07.png" id="2_2b726"]
 [ext_resource type="PackedScene" uid="uid://djqojwwng6ogn" path="res://Logic/DrillingHealth.tscn" id="4_pxre6"]
 [ext_resource type="PackedScene" uid="uid://b1eq2ugsf27fh" path="res://Logic/Hologram/HoloArea.tscn" id="5_iynr1"]
 [ext_resource type="PackedScene" uid="uid://dhlv64551sij0" path="res://Logic/Hologram/HoloDistanceMeter.tscn" id="5_y825p"]
+[ext_resource type="PackedScene" uid="uid://ct67qqmsjiy6x" path="res://Logic/Hologram/HoloSocket.tscn" id="6_o15dl"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sp2si"]
 
@@ -69,3 +70,5 @@ transform = Transform3D(2.97009, 0, 0, 0, 2.97009, 0, 0, 0, 2.97009, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HoloArea"]
 shape = SubResource("CapsuleShape3D_twf8k")
+
+[node name="HoloSocket" parent="." instance=ExtResource("6_o15dl")]

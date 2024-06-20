@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://t4burg5wv6qw"]
+[gd_scene load_steps=6 format=3 uid="uid://t4burg5wv6qw"]
 
 [ext_resource type="Script" path="res://Logic/Hologram/HoloObstacle.gd" id="1_paque"]
 [ext_resource type="PackedScene" uid="uid://b1eq2ugsf27fh" path="res://Logic/Hologram/HoloArea.tscn" id="2_op1dr"]
+[ext_resource type="PackedScene" uid="uid://ct67qqmsjiy6x" path="res://Logic/Hologram/HoloSocket.tscn" id="3_b7a5i"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_yeyyp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_78mq7"]
-radius = 1.51078
+radius = 1.63426
 
 [node name="HoloObstacle" type="Node3D"]
 script = ExtResource("1_paque")
@@ -20,3 +21,5 @@ mesh = SubResource("SphereMesh_yeyyp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HoloArea"]
 shape = SubResource("SphereShape3D_78mq7")
+
+[node name="HoloSocket" parent="." instance=ExtResource("3_b7a5i")]

@@ -6,6 +6,8 @@ const HOLO_KEEP_RANGE = 30.0
 
 @export var center_object: HoloObject
 
+@onready var socket_y: Marker3D = %SocketY
+
 func get_all_holo_objects() -> Array[HoloObject]:
 	var list : Array[HoloObject] = []
 	list.append_array(%DrillCenterPivot.get_children().filter(func(x): return x is HoloObject))

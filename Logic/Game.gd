@@ -25,6 +25,7 @@ var raycast_object: Object:
 					raycast_object.call("hover")
 var mouse_position: Vector3
 var camera: Camera3D
+var camera_path: CameraPath
 var mouse_normal: Vector3
 var hologram: Hologram
 var holo_drill: HoloObject

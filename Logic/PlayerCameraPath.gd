@@ -1,6 +1,7 @@
-extends Node3D
+class_name CameraPath extends Node3D
 
-@onready var pivot : Node3D = $CamPivot
+@onready var pivot : Node3D = %CamPivot
+@onready var shake_pivot : Node3D = %ShakePivot
 @onready var view_root : Node3D = $Views
 var views: Array[Camera3D] = []
 var view_count : int
@@ -15,11 +16,14 @@ var transition_tween: Tween
 
 func _ready() -> void:
 	Game.camera = %PlayerCamera
+	Game.camera_path = self
 	views.append_array(view_root.get_children())
 	view_count = len(views)
 	pivot.global_transform = views[current_view].global_transform
 
 func _process(delta: float) -> void:
+	shake_process(delta)
+	
 	if Input.is_action_just_pressed("view_up"):
 		selected_view = clamp(selected_view + 1, 0, view_count - 1)
 	if Input.is_action_just_pressed("view_down"):
@@ -69,3 +73,27 @@ func check_mouse_colliding() -> void:
 		#printerr("Unknown collider: %s" % obj)
 	if (mouse_position != null): Game.mouse_position = mouse_position
 
+@export var noise : FastNoiseLite
+var time := 0.0
+var trauma := 0.0
+var trauma_reduction := .75
+var shake_intensity_factor : float
+func screen_shake(_trauma: float = 2.0, _shake_intensity: float = .5):
+	trauma = max(_trauma, trauma)
+	shake_intensity_factor = _shake_intensity
+
+func shake_process(delta):
+	if trauma > 0.0:
+		trauma = max(trauma - delta * trauma_reduction, 0.0)
+		time += delta
+		
+		%ShakePivot.rotation_degrees.x = 15.0 * get_shake_intensity() * get_noise_from_seed(1)
+		%ShakePivot.rotation_degrees.y = 15.0 * get_shake_intensity() * get_noise_from_seed(2)
+		%ShakePivot.rotation_degrees.z = 8.0 * get_shake_intensity() * get_noise_from_seed(3)
+
+func get_shake_intensity() -> float:
+	return min(trauma, 1.0) * min(trauma, 1.0) * shake_intensity_factor
+
+func get_noise_from_seed(_seed: int) -> float:
+	noise.seed = _seed
+	return noise.get_noise_1d(time * 50.0)
