@@ -69,7 +69,7 @@ script = ExtResource("1_7uevs")
 transform = Transform3D(0.498589, 0, 0, 0, 0.498589, 0, 0, 0, 0.498589, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Prototype"]
-transform = Transform3D(3.5175, 0, 0, 0, 0.0802565, 0, 0, 0, 1.51691, -0.555538, 0, -1.97888)
+transform = Transform3D(3.5175, 0, 0, 0, 0.0802565, 0, 0, 0, 1.96475, -0.555538, 0, -1.97888)
 mesh = SubResource("BoxMesh_8cpak")
 
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="Prototype"]
@@ -121,11 +121,11 @@ transform = Transform3D(-1.82769e-08, 0, 1.16607, 0, 0.0802565, 0, -0.418127, 0,
 mesh = SubResource("BoxMesh_8cpak")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Prototype"]
-transform = Transform3D(1.73633, 0.026774, -0.129512, 0, -0.025485, -1.1122, -0.648254, 0.0717134, -0.346893, -0.429122, 1.5623, -2.11689)
+transform = Transform3D(1.81216, 0.0160564, -0.0776685, -0.0737389, -0.0108258, -1.16068, -0.381701, 0.0783207, -0.144511, -0.429122, 1.92105, -2.38493)
 mesh = SubResource("BoxMesh_8cpak")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Prototype"]
-transform = Transform3D(0.561771, 0.0543427, -0.290362, 0.0385075, -0.0251758, -1.49306, -0.546801, 0.0540574, -0.403457, -1.6265, 1.70946, -1.81718)
+transform = Transform3D(0.561771, 0.0543427, -0.290362, 0.0385075, -0.0251758, -1.49306, -0.546801, 0.0540574, -0.403457, -1.71045, 1.97925, -1.88841)
 mesh = SubResource("BoxMesh_8cpak")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Prototype"]
@@ -186,7 +186,7 @@ collide_with_areas = true
 transform = Transform3D(0.997564, 0, -0.0697565, 0, 1, 0, 0.0697565, 0, 0.997564, 0, -1.10493, 0.0126886)
 
 [node name="NavigationView" type="Camera3D" parent="PlayerCameraPath/Views"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.587544, 0.152456)
+transform = Transform3D(1, 0, 0, 0, 0.978148, 0.207912, 0, -0.207912, 0.978148, 0, 0.718, 0.087)
 
 [node name="EmergencyView" type="Camera3D" parent="PlayerCameraPath/Views"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15097, -0.116392)
@@ -257,7 +257,7 @@ shape = SubResource("BoxShape3D_wuv3i")
 script = ExtResource("6_5wlna")
 
 [node name="Hologram" parent="." instance=ExtResource("7_1dxs8")]
-transform = Transform3D(0.477551, 0, 0, 0, 0.477551, 0, 0, 0, 0.477551, -0.107247, 0.506323, -0.842418)
+transform = Transform3D(0.477551, 0, 0, 0, 0.477551, 0, 0, 0, 0.477551, -0.130718, 0.687837, -0.946732)
 
 [node name="RayCastCollider" type="Node3D" parent="."]
 
@@ -269,17 +269,17 @@ mesh = SubResource("PlaneMesh_of0ak")
 [node name="Devices" type="Node3D" parent="."]
 
 [node name="Slider" parent="Devices" instance=ExtResource("8_vl6ol")]
-transform = Transform3D(-2.52271e-08, 0, 0.577129, 0, 0.577129, 0, -0.577129, 0, -2.52271e-08, -0.77218, 0.0271702, -0.928671)
+transform = Transform3D(-2.52271e-08, 0, 0.577129, 0, 0.577129, 0, -0.577129, 0, -2.52271e-08, -0.77218, 0.0271702, -0.817686)
 cockpit_input_name = "navigation_drive"
 
 [node name="Slider2" parent="Devices" instance=ExtResource("8_vl6ol")]
-transform = Transform3D(-2.52271e-08, 0, 0.577129, 0, 0.577129, 0, -0.577129, 0, -2.52271e-08, -0.574569, 0.0271702, -1.05662)
+transform = Transform3D(-2.52271e-08, 0, 0.577129, 0, 0.577129, 0, -0.577129, 0, -2.52271e-08, -0.574569, 0.0271702, -0.945635)
 min_value = -1.0
 start_progress = 0.5
 cockpit_input_name = "navigation_z"
 
 [node name="Slider3" parent="Devices" instance=ExtResource("8_vl6ol")]
-transform = Transform3D(-0.577129, 0, -5.04542e-08, 0, 0.577129, 0, 5.04542e-08, 0, -0.577129, -0.198223, 0.0271702, -0.693919)
+transform = Transform3D(-0.577129, 0, -5.04542e-08, 0, 0.577129, 0, 5.04542e-08, 0, -0.577129, -0.198223, 0.0271702, -0.582934)
 min_value = -1.0
 start_progress = 0.5
 cockpit_input_name = "navigation_x"

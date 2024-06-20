@@ -23,12 +23,17 @@ var raycast_object: Object:
 			if raycast_object:
 				if raycast_object.has_method("hover"):
 					raycast_object.call("hover")
-var mouse_position
+var mouse_position: Vector3
 var camera: Camera3D
 var mouse_normal: Vector3
+var hologram: Hologram
+var holo_drill: HoloObject
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("select"):
 		if raycast_object:
 			if raycast_object.has_method("mouse_down"):
 				raycast_object.call("mouse_down")
+
+func _ready() -> void:
+	new_layer_reached.connect(sauce.spawn_new_holo_objects)

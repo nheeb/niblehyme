@@ -65,6 +65,7 @@ func check_mouse_colliding() -> void:
 	elif obj == null:
 		Game.raycast_object = null
 	else:
-		printerr("Unknown collider: %s" % obj)
+		pass
+		#printerr("Unknown collider: %s" % obj)
 	if (mouse_position != null): Game.mouse_position = mouse_position
 

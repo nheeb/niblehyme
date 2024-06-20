@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://dlf5hpolm6ub0"]
+
+[ext_resource type="Script" path="res://Logic/Hologram/HoloGoldOre.gd" id="1_mpxmg"]
+[ext_resource type="Texture2D" uid="uid://cue3n58t8t1hv" path="res://Assets/KenneyParticles/star_07.png" id="2_2b726"]
+[ext_resource type="PackedScene" uid="uid://djqojwwng6ogn" path="res://Logic/DrillingHealth.tscn" id="4_pxre6"]
+[ext_resource type="PackedScene" uid="uid://b1eq2ugsf27fh" path="res://Logic/Hologram/HoloArea.tscn" id="5_iynr1"]
+[ext_resource type="PackedScene" uid="uid://dhlv64551sij0" path="res://Logic/Hologram/HoloDistanceMeter.tscn" id="5_y825p"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sp2si"]
+
+[sub_resource type="Curve" id="Curve_apgxe"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.484076, 0.942259), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kcco7"]
+curve = SubResource("Curve_apgxe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mpkec"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -720.0
+angle_max = 720.0
+angular_velocity_min = 100.0
+angular_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_kcco7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jgor5"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(0.983643, 1, 0.476563, 1)
+albedo_texture = ExtResource("2_2b726")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_yqlo2"]
+material = SubResource("StandardMaterial3D_jgor5")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_twf8k"]
+radius = 0.834563
+height = 2.39936
+
+[node name="HoloGoldOre" type="Node3D"]
+script = ExtResource("1_mpxmg")
+holo_color = Color(1, 0.948242, 0.171875, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_sp2si")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 4
+visibility_aabb = AABB(-1.94367, -1.95036, -1.99421, 3.68083, 3.47441, 3.97728)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_mpkec")
+draw_pass_1 = SubResource("QuadMesh_yqlo2")
+
+[node name="DrillingHealth" parent="." instance=ExtResource("4_pxre6")]
+
+[node name="HoloDistanceMeter" parent="." instance=ExtResource("5_y825p")]
+transform = Transform3D(2.97009, 0, 0, 0, 2.97009, 0, 0, 0, 2.97009, 0, 0, 0)
+
+[node name="HoloArea" parent="." instance=ExtResource("5_iynr1")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HoloArea"]
+shape = SubResource("CapsuleShape3D_twf8k")

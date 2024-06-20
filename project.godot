@@ -21,6 +21,11 @@ Game="*res://Logic/Game.tscn"
 Utility="*res://Logic/Utility.gd"
 DrillStats="*res://Logic/Upgrades/DrillStats.tscn"
 
+[debug]
+
+gdscript/warnings/unused_variable=0
+gdscript/warnings/unused_parameter=0
+
 [editor]
 
 naming/scene_name_casing=1

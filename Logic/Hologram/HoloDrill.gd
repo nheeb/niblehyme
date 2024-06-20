@@ -1,6 +1,6 @@
 extends HoloObject
 
-const MAX_TURN_ANGLE = .3 * PI
+const MAX_TURN_ANGLE = .38 * PI
 
 ## Actual direction of the drill
 var drill_direction: Vector3
@@ -12,7 +12,11 @@ const TURN_VELOCITY = .8
 
 ## The input of the movement drive slider (0.0 - 1.0)
 var movement_power := 0.0
-const MOVEMENT_VELOCITY_MAX = 3.0
+const MOVEMENT_VELOCITY_MAX = 2.5
+
+func _ready() -> void:
+	super._ready()
+	Game.holo_drill = self
 
 func _process(delta: float) -> void:
 	update_rotation(delta)
@@ -48,7 +52,7 @@ func update_position(delta: float) -> void:
 			
 	holo_pos += drill_direction * delta * MOVEMENT_VELOCITY_MAX * movement_power
 
-	if holo_pos.y > (1 + Game.current_layer) * Game.LAYER_SIZE:
+	if -holo_pos.y > (1 + Game.current_layer) * Game.LAYER_SIZE:
 		Game.advance_layer()
 
 func drilling_process(delta: float):

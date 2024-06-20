@@ -20,7 +20,7 @@ func switch_mode(mode:Mode=opposite_mode) -> void:
 			opposite_mode = Mode.Collect
 			switch.emit("Discard")
 
-func _on_area_3d_input_event(camera, event, position, normal, shape_idx):
+func _on_area_3d_input_event(camera, event, _position, normal, shape_idx):
 	if (event is InputEventMouseButton and event.is_pressed()):
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			switch_mode()

@@ -41,7 +41,13 @@ func _ready() -> void:
 	set_progress(start_progress)
 
 func get_mouse_pos() -> Vector3:
-	return drag_plane.intersects_ray(Game.camera.global_position, Game.mouse_normal)
+	var pos = drag_plane.intersects_ray(Game.camera.global_position, Game.mouse_normal)
+	if pos:
+		return pos
+	elif drag_start_pos:
+		return drag_start_pos
+	else:
+		return Vector3.ZERO
 
 func set_progress(p: float):
 	p = clamp(p, 0.0, 1.0)

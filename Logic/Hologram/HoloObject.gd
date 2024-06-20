@@ -8,9 +8,16 @@ var holo_pos: Vector3:
 		holo_pos = x
 		position = x
 
+var visibility : float = 0.0
 func update_visibility(visibility_progress: float):
-	scale = visibility_progress * Vector3.ONE
-	visible = visibility_progress >= .1
+	visibility_progress = clamp(visibility_progress, .01, 1.0)
+	if visibility != visibility_progress:
+		visibility = visibility_progress
+		scale = visibility_progress * Vector3.ONE
+		visible = visibility_progress >= .02
+		for mi in all_mi:
+			mi.material_override.set("shader_parameter/visibility_progress", 
+															visibility_progress)
 
 func _ready() -> void:
 	## Updating holo pos
@@ -47,9 +54,11 @@ func destroy():
 
 const HOLO_MATERIAL = preload("res://Logic/Hologram/HoloMaterial.tres")
 @export var holo_color := Color.GREEN
+var all_mi : Array[MeshInstance3D]
 func set_holo_material():
 	var mat = HOLO_MATERIAL.duplicate()
-	for mi in Utility.get_recursive_mesh_instances(self):
+	all_mi = Utility.get_recursive_mesh_instances(self)
+	for mi in all_mi:
 		mi.material_override = mat
 		mi.material_override.set("shader_parameter/albedo", holo_color)
 

@@ -21,7 +21,7 @@ func flow_through_pipe() -> void:
 	var process_frame = get_tree().process_frame
 	await process_frame
 	get_parent().add_child.call_deferred(new_path_follow)
-	reparent(new_path_follow)
+	reparent(new_path_follow, false)
 	self.position = Vector3.ZERO
 	await process_frame
 
