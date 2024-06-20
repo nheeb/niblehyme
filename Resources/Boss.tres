@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://dhpmlxaildjo0"]
+
+[ext_resource type="Script" path="res://Resources/Character.gd" id="1_b2c0l"]
+
+[resource]
+script = ExtResource("1_b2c0l")
+name = "Boss"
+prefered_side = "RIGHT"
