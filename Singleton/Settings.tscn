@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://sv5v6od6e54a"]
+
+[ext_resource type="Script" path="res://Singleton/Settings.gd" id="1_cedos"]
+
+[node name="Settings" type="Node"]
+process_mode = 3
+script = ExtResource("1_cedos")
+
+[node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenuUI" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PauseMenuUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 400
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenuUI/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="BTResume" type="Button" parent="UI/PauseMenuUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="BTSettings" type="Button" parent="UI/PauseMenuUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="SettingsUI" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/SettingsUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
+
+[node name="Panel" type="Panel" parent="UI/SettingsUI/MarginContainer"]
+layout_mode = 2
+
+[connection signal="visibility_changed" from="UI" to="." method="_on_ui_visibility_changed"]
+[connection signal="visibility_changed" from="UI/PauseMenuUI" to="." method="_on_pause_menu_ui_visibility_changed"]
+[connection signal="pressed" from="UI/PauseMenuUI/MarginContainer/VBoxContainer/BTResume" to="." method="_on_bt_resume_pressed"]
+[connection signal="visibility_changed" from="UI/SettingsUI" to="." method="_on_settings_ui_visibility_changed"]
