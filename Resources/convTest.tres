@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Conversation" load_steps=7 format=3 uid="uid://dnen2eqcc0cm5"]
+
+[ext_resource type="Script" path="res://Resources/Conversation.gd" id="1_1utdh"]
+[ext_resource type="Resource" uid="uid://dhpmlxaildjo0" path="res://Resources/Boss.tres" id="1_ksqdx"]
+[ext_resource type="Resource" uid="uid://deexprp0mxgrt" path="res://Resources/Player.tres" id="1_r0xww"]
+[ext_resource type="Script" path="res://Resources/DialogueSnippet.gd" id="2_63ilu"]
+
+[sub_resource type="Resource" id="Resource_5rei7"]
+script = ExtResource("2_63ilu")
+interlocutor = ExtResource("1_r0xww")
+text = "Socki UwU"
+force_side = "PREFERED"
+
+[sub_resource type="Resource" id="Resource_e2f5j"]
+script = ExtResource("2_63ilu")
+interlocutor = ExtResource("1_ksqdx")
+text = "Nono"
+force_side = "PREFERED"
+
+[resource]
+script = ExtResource("1_1utdh")
+dialogue_snippets = Array[ExtResource("2_63ilu")]([SubResource("Resource_5rei7"), SubResource("Resource_e2f5j")])

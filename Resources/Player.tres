@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://deexprp0mxgrt"]
+
+[ext_resource type="Script" path="res://Resources/Character.gd" id="1_psmms"]
+
+[resource]
+script = ExtResource("1_psmms")
+name = "Player"
+prefered_side = "LEFT"
