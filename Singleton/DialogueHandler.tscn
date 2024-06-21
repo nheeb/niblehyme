@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cio14by03q8ir"]
+[gd_scene load_steps=2 format=3 uid="uid://cio14by03q8ir"]
 
 [ext_resource type="Script" path="res://Singleton/DialogueHandler.gd" id="1_lg0ou"]
-[ext_resource type="Resource" uid="uid://dnen2eqcc0cm5" path="res://Resources/convTest.tres" id="2_rime3"]
 
 [node name="DialogueHandler" type="Node"]
 script = ExtResource("1_lg0ou")
-list = Array[Resource("res://Resources/Conversation.gd")]([ExtResource("2_rime3")])
 
 [node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

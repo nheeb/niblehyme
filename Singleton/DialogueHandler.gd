@@ -1,25 +1,32 @@
 extends Node
 
 var char_duration : float = 0.05
-
-@export var list : Array[Conversation]
 var active_conversation : Conversation
 
 signal next_snippet
 
-func _ready():
-	
-	start_conversation()
+var dialogue_queue : Array[Conversation]
 
-func start_conversation() -> void:
-	active_conversation = list[0]
-	build_conversation(active_conversation)
+func start_conversation(conv:Conversation,queue:bool=true) -> void:
+	%UI.visible = true
+	if (active_conversation != null):
+		if (queue): dialogue_queue.append(conv)
+		return
+
+	active_conversation = conv
+	build_conversation(conv)
 
 func build_conversation(conversation:Conversation) -> void:
 	for d in conversation.dialogue_snippets:
 		show_icon(d)
 		show_text(d)
 		await next_snippet
+
+	dialogue_queue.erase(active_conversation)
+	active_conversation = null
+	%RichTextLabel.text = ""
+	%UI.visible = false
+
 
 func show_icon(snippet:DialogueSnippet) -> void: 
 	if (snippet.side == "LEFT"):
@@ -37,6 +44,10 @@ func show_text(snippet:DialogueSnippet) -> void:
 	tween.tween_property(%RichTextLabel,"visible_ratio",1,duration)
 
 func _physics_process(_delta):
-	if (active_conversation == null): return
+	if (active_conversation == null): 
+		if (!dialogue_queue.is_empty()):
+			var next_dialogue = dialogue_queue.pop_front()
+			start_conversation(next_dialogue)
+		return
 	if (Input.is_action_just_pressed("next_line")):
 		next_snippet.emit()

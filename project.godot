@@ -21,11 +21,7 @@ Game="*res://Logic/Game.tscn"
 Utility="*res://Logic/Utility.gd"
 DrillStats="*res://Logic/Upgrades/DrillStats.tscn"
 Settings="*res://Singleton/Settings.tscn"
-
-[debug]
-
-gdscript/warnings/unused_variable=0
-gdscript/warnings/unused_parameter=0
+DialogueHandler="*res://Singleton/DialogueHandler.tscn"
 
 [editor]
 

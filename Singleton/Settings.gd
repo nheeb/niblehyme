@@ -1,5 +1,6 @@
 extends Node
 
+@export var list : Array[Conversation] 
 
 func _on_ui_visibility_changed():
 	if (%UI.visible):
@@ -25,6 +26,13 @@ func _on_bt_resume_pressed():
 
 func _ready():
 	%UI.visible = false
+	var timer = get_tree().create_timer(5.0)
+	await timer.timeout
+	DialogueHandler.start_conversation(list[0])
+	DialogueHandler.start_conversation(list[1])
+	var timer2 = get_tree().create_timer(10.0)
+	await timer2.timeout
+	DialogueHandler.start_conversation(list[2])
 
 func _physics_process(delta):
 	if (Input.is_action_just_pressed("settings")):

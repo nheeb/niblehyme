@@ -1,10 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://sv5v6od6e54a"]
+[gd_scene load_steps=11 format=3 uid="uid://sv5v6od6e54a"]
 
 [ext_resource type="Script" path="res://Singleton/Settings.gd" id="1_cedos"]
+[ext_resource type="Resource" uid="uid://dhpmlxaildjo0" path="res://Resources/Boss.tres" id="2_2iva2"]
+[ext_resource type="Script" path="res://Resources/DialogueSnippet.gd" id="3_xwud2"]
+[ext_resource type="Script" path="res://Resources/Conversation.gd" id="4_5b88o"]
+
+[sub_resource type="Resource" id="Resource_nc6k1"]
+script = ExtResource("3_xwud2")
+interlocutor = ExtResource("2_2iva2")
+text = "Test1"
+side = "PREFERED"
+
+[sub_resource type="Resource" id="Resource_00tq4"]
+script = ExtResource("4_5b88o")
+dialogue_snippets = Array[ExtResource("3_xwud2")]([SubResource("Resource_nc6k1")])
+
+[sub_resource type="Resource" id="Resource_ofui5"]
+script = ExtResource("3_xwud2")
+interlocutor = ExtResource("2_2iva2")
+text = "Test2"
+side = "PREFERED"
+
+[sub_resource type="Resource" id="Resource_254ra"]
+script = ExtResource("4_5b88o")
+dialogue_snippets = Array[ExtResource("3_xwud2")]([SubResource("Resource_ofui5")])
+
+[sub_resource type="Resource" id="Resource_6b5i5"]
+script = ExtResource("3_xwud2")
+interlocutor = ExtResource("2_2iva2")
+text = "Test3"
+side = "PREFERED"
+
+[sub_resource type="Resource" id="Resource_fj6f7"]
+script = ExtResource("4_5b88o")
+dialogue_snippets = Array[ExtResource("3_xwud2")]([SubResource("Resource_6b5i5")])
 
 [node name="Settings" type="Node"]
 process_mode = 3
 script = ExtResource("1_cedos")
+list = Array[ExtResource("4_5b88o")]([SubResource("Resource_00tq4"), SubResource("Resource_254ra"), SubResource("Resource_fj6f7")])
 
 [node name="UI" type="Control" parent="."]
 unique_name_in_owner = true
