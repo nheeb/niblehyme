@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjnug7df4tdaf"]
+
+[ext_resource type="Script" path="res://Singleton/Shop.gd" id="1_r45en"]
+[ext_resource type="PackedScene" uid="uid://dwgiq0lklqgnv" path="res://Logic/ShopItem.tscn" id="2_oof44"]
+
+[node name="Shop" type="Node"]
+script = ExtResource("1_r45en")
+
+[node name="ShopItem" parent="." instance=ExtResource("2_oof44")]
+offset_left = 53.0
+offset_top = 55.0
+offset_right = 53.0
+offset_bottom = 55.0
+item_name = "test"
+price = 60
+
+[node name="ShopItem2" parent="." instance=ExtResource("2_oof44")]
+offset_left = 113.0
+offset_top = 55.0
+offset_right = 113.0
+offset_bottom = 55.0
+item_name = "test2"
+price = 50

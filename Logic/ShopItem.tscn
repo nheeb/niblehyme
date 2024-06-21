@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwgiq0lklqgnv"]
+
+[ext_resource type="Script" path="res://Logic/ShopItem.gd" id="1_5nmne"]
+
+[node name="ShopItem" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5nmne")
+
+[node name="Button" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -100.0
+offset_top = 30.0
+offset_right = 100.0
+offset_bottom = 55.0
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -100.0
+offset_top = 30.0
+offset_right = 100.0
+offset_bottom = 55.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

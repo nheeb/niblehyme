@@ -38,3 +38,7 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	new_layer_reached.connect(sauce.spawn_new_holo_objects)
+
+
+# shop:
+var gold : int = 0
